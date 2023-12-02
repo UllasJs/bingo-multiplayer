@@ -1,0 +1,28 @@
+table tr td {
+  padding: 30px;
+  border: 1px solid #000;
+  cursor: pointer;
+  font-size: 32px;
+  font-family: 'poppins', sans-serif;
+}
+table tr td:hover {
+  background-color: #1d2c38;
+  color: #fff;
+}
+.board h1 {
+  width: 100%;
+  text-align: center;
+}
+.bingo {
+  font-size: 42px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2rem;
+}
+.bingo.slice {
+  color: red !important;
+}
+
+.cells.marked {
+  background-color: red;
+}

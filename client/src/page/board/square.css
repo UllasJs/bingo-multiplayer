@@ -1,0 +1,15 @@
+.square {
+  padding: 30px;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.square.clicked {
+  background-color: red !important; /* Change the background color when clicked */
+  color: #fff !important; /* Adjust text color for better visibility */
+}
+
+.square:hover {
+  background-color: #1d2c38;
+  color: #fff;
+}

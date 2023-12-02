@@ -1,0 +1,75 @@
+.SignUp-main {
+  background-color: #1d2c38;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  overflow: hidden;
+}
+h1 {
+  font-size: 42px;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+form {
+  display: flex;
+  width: 500px;
+  height: 400px;
+  background-color: #f3f4f5;
+  border-radius: 30px;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 35px;
+  padding: 0 50px;
+}
+
+.text-fields  {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+label {
+  font-size: 24px;
+  color: #1d2c38;
+  text-wrap: nowrap;
+  font-family: 'Poppins', sans-serif;
+}
+input {
+  width: 200px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #1d2c38;
+  font-family: 'poppins', sans-serif;
+}
+button {
+  width: 80%;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #1d2c38;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.login-page {
+  display: flex;
+  gap: 10px;
+}
+.login p {
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+.login-page-link {
+  text-decoration: none;
+  color: #0092ff;
+}

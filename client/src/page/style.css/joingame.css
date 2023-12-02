@@ -1,0 +1,8 @@
+.joingame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  width: 500px;
+  height: 500px;
+}
