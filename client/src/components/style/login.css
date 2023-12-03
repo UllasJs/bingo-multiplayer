@@ -1,4 +1,4 @@
-.SignUp-main {
+.login-main {
   width: 300px;
   height: 400px;
   display: flex;
@@ -10,7 +10,7 @@
   border-radius: 20px;
   border: 1px solid #1d2c38;
 }
-.SignUp-main h1 {
+.login-main h1 {
   font-size: 40px;
   color: #1d2c38;
   font-family: 'Poppins', sans-serif;
@@ -47,15 +47,9 @@ form {
 button {
   color: #fff;
   background-color: #1d2c38;
-  border: 1px solid #ccc;
+  border: none;
   padding: 10px;
   border-radius: 20px;
   width: 100px;
   margin: 0 auto;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #f3f4f5;
-  color: #1d2c38;
 }

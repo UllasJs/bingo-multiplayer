@@ -66,7 +66,7 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <div style={{ display: "flex", alignItems: "center",justifyContent: 'space-around' }}>
+                  <div style={{ display: "flex", alignItems: "center",justifyContent: 'space-around', gap: "50px" }}>
                     <SignUp setIsAuth={setIsAuth} />
                     <Login setIsAuth={setIsAuth} />{" "}
                   </div>

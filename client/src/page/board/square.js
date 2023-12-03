@@ -10,12 +10,12 @@ function Square({ chooseSquare, val }) {
   };
 
   return (
-    <div
+    <p
       className={`square ${clicked ? "clicked" : ""}`}
       onClick={handleClick}
     >
       {val}
-    </div>
+    </p>
   );
 }
 

@@ -42,7 +42,7 @@ function JoinGame() {
               setRivalName(event.target.value);
             }}
           />
-          <button onClick={createChannel}>Join/Start Game</button>
+          <button className="joinbtn" onClick={createChannel}>Join/Start Game</button>
         </div>
       )}
     </>

@@ -1,8 +1,8 @@
 import { useState } from "react";
 // import { Link } from "react-router-dom";
-// import "./style/signup.css";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import './style/login.css'
 
 export function Login({ setIsAuth }) {
   const cookies = new Cookies();

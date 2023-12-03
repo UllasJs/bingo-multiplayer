@@ -1,8 +1,29 @@
 .joingame {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  right: 50%;
   width: 500px;
   height: 500px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  align-items: center;
+  flex-direction: column;
+}
+.joingame h4  {
+  font-size: 40px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+.joingame input {
+  width: 500px;
+  text-align: center;
+  font-size: 18px;
+  color: #1d2c38;
+  border: 1px solid #f3f4f5;
+  background-color: #f3f4f5;
+  border-radius: 20px;
+  outline: none;
+  padding: 20px;
+}
+.joinbtn {
+  width: 250px;
 }
