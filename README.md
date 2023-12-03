@@ -1,3 +1,3 @@
 # bingo-multiplayer
 
-Game logic is not working properly have to fix it
+Game logic is  working properly fixed it
