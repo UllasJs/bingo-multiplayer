@@ -5,7 +5,7 @@ function Square({ chooseSquare, val }) {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
-    setClicked(!clicked);
+    setClicked(true);
     chooseSquare(val); // Notify the parent component about the click
   };
 

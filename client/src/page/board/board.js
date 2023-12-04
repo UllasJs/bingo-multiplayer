@@ -3,6 +3,8 @@ import Square from "./square"; // Import the Square component
 import "./board.css"; // Import your board styles if needed
 import { useChannelStateContext, useChatContext } from "stream-chat-react";
 import { Pattern } from "./patterns";
+import ClickSound from "../../assets/soundeffects/game-click.wav";
+import WinnerSound from '../../assets/soundeffects/game-over.wav'
 
 function Board({ result, setResult }) {
   const [board, setBoard] = useState([]);
@@ -15,6 +17,10 @@ function Board({ result, setResult }) {
   let idx;
   const chooseSquare = async (val) => {
     // console.log("square clicked", val);
+
+    const clickaudio = new Audio(ClickSound)
+
+    clickaudio.play();
 
     for (let i = 0; i < board.length; i++) {
       if (board[i] === val && board[i] !== "X") {
@@ -215,7 +221,9 @@ function Board({ result, setResult }) {
           console.log("Found 5 true values!");
           // setLoser(true)
           
-          alert("Winner")
+          alert("Winner");
+          const gameOver = new Audio(WinnerSound)
+          gameOver.play()
           // setWinner(true)
           // You can perform additional actions here
           break; // Break out of the loop once you find the sequence
