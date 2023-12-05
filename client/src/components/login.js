@@ -15,7 +15,7 @@ export function Login({ setIsAuth }) {
     // console.log(username, password);
 
     axios
-      .post("http://localhost:3001/login", { username, password })
+      .post("http://192.168.0.174:3001/login", { username, password })
       .then((res) => {
         const { token, userId, username } = res.data;
 

@@ -26,7 +26,7 @@ function Game({ channel }) {
     return () => {
       gamemusic.removeEventListener("ended", handleMusicEnd);
     };
-  }, [gamemusic]);
+  }, []);
 
   const [playersjoined, setPlayersJoined] = useState(
     channel.state.watcher_count === 2

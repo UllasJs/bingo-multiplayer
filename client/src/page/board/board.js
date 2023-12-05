@@ -160,7 +160,6 @@ function Board({ result, setResult }) {
     false,
   ];
 
-  const [winn, setWinner] = useState(false);
 
   function checkwinner() {
     if (pat0) {
