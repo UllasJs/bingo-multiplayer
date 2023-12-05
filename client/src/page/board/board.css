@@ -25,9 +25,12 @@ table tr td:hover {
   font-family: 'Poppins', sans-serif;
   letter-spacing: 2rem;
 }
-/* .slice {
-  color: red !important;
-} */
+.slice {
+  color: red;
+  font-weight: bold;
+  text-decoration: underline;
+  display: inline-block; /* or display: block; */
+}
 
 .cells.marked {
   background-color: red;

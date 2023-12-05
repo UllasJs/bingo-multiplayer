@@ -4,9 +4,11 @@ import "./board.css"; // Import your board styles if needed
 import { useChannelStateContext, useChatContext } from "stream-chat-react";
 import { Pattern } from "./patterns";
 import ClickSound from "../../assets/soundeffects/game-click.wav";
-import WinnerSound from '../../assets/soundeffects/game-over.wav'
+import WinnerSound from "../../assets/soundeffects/game-over.wav";
+import PatternSound from "../../assets/soundeffects/game-pattern.wav";
 
 function Board({ result, setResult }) {
+  const pattSound = new Audio(PatternSound);
   const [board, setBoard] = useState([]);
   const [player, setPlayer] = useState(false);
   const [turn, setTurn] = useState(false);
@@ -18,7 +20,7 @@ function Board({ result, setResult }) {
   const chooseSquare = async (val) => {
     // console.log("square clicked", val);
 
-    const clickaudio = new Audio(ClickSound)
+    const clickaudio = new Audio(ClickSound);
 
     clickaudio.play();
 
@@ -51,6 +53,7 @@ function Board({ result, setResult }) {
 
       setBoard(updatedBoard);
       checkPatterns(updatedBoard);
+      // checkwinner();
       // if (winner) {
       //   winnerText = "Winner!"
       // }
@@ -88,6 +91,7 @@ function Board({ result, setResult }) {
 
       setBoard(updatedBoard);
       checkPatterns(updatedBoard);
+      // checkwinner();
       // setPlayer(!player)
       // checkTextCut(idx2);
     }
@@ -124,8 +128,8 @@ function Board({ result, setResult }) {
   // create each combination function ?
   const [bSliced, setBsliced] = useState(false);
   const [iSliced, setIsliced] = useState(false);
-  const [nSliced, setGsliced] = useState(false);
-  const [gSliced, setNsliced] = useState(false);
+  const [nSliced, setNsliced] = useState(false);
+  const [gSliced, setGsliced] = useState(false);
   const [oSliced, setOsliced] = useState(false);
 
   const [pat0, setPat0] = useState(false);
@@ -156,11 +160,7 @@ function Board({ result, setResult }) {
     false,
   ];
 
-  const b = document.querySelector(".b");
-  const i = document.querySelector(".i");
-  const n = document.querySelector(".n");
-  const g = document.querySelector(".g");
-  const o = document.querySelector(".o");
+  const [winn, setWinner] = useState(false);
 
   function checkwinner() {
     if (pat0) {
@@ -220,13 +220,14 @@ function Board({ result, setResult }) {
         if (consecutiveTrueCount === 5) {
           console.log("Found 5 true values!");
           // setLoser(true)
-          
-          alert("Winner");
-          const gameOver = new Audio(WinnerSound)
-          gameOver.play()
+          const gameOver = new Audio(WinnerSound);
+          gameOver.play();
+          if (oSliced) {
+            alert("You Won");
+          }
           // setWinner(true)
           // You can perform additional actions here
-          break; // Break out of the loop once you find the sequence
+          // Break out of the loop once you find the sequence
         }
       }
     }
@@ -247,23 +248,23 @@ function Board({ result, setResult }) {
           board[4] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
+            pattSound.play();
             setBsliced(true);
             setPat0(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
+            pattSound.play();
             setIsliced(true);
             setPat0(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
+            pattSound.play();
             setNsliced(true);
             setPat0(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
+            pattSound.play();
             setGsliced(true);
             setPat0(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
+            pattSound.play();
             setOsliced(true);
             setPat0(true);
           } else {
@@ -284,25 +285,27 @@ function Board({ result, setResult }) {
           board[9] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
             setBsliced(true);
+            pattSound.play();
+
             setPat1(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
             setIsliced(true);
+            pattSound.play();
+
             setPat1(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
+            pattSound.play();
             setNsliced(true);
             setPat1(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
             setGsliced(true);
+            pattSound.play();
             setPat1(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
             setOsliced(true);
             setPat1(true);
+            pattSound.play();
           } else {
             setPat1(false);
             console.log("Pattern not Complete!");
@@ -321,25 +324,25 @@ function Board({ result, setResult }) {
           board[14] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
             setBsliced(true);
+            pattSound.play();
             setPat2(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
             setIsliced(true);
+            pattSound.play();
             setPat2(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
             setNsliced(true);
             setPat2(true);
+            pattSound.play();
           } else if (gSliced === false) {
-            g.classList.add("slice");
             setGsliced(true);
             setPat2(true);
+            pattSound.play();
           } else if (oSliced === false) {
-            o.classList.add("slice");
             setOsliced(true);
             setPat2(true);
+            pattSound.play();
           } else {
             setPat2(false);
             console.log("Pattern not Complete!");
@@ -358,24 +361,24 @@ function Board({ result, setResult }) {
           board[19] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
             setBsliced(true);
             setPat3(true);
+            pattSound.play();
           } else if (iSliced === false) {
-            i.classList.add("slice");
             setIsliced(true);
+            pattSound.play();
             setPat3(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
             setNsliced(true);
+            pattSound.play();
             setPat3(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
             setGsliced(true);
+            pattSound.play();
             setPat3(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
             setOsliced(true);
+            pattSound.play();
             setPat3(true);
           } else {
             setPat3(false);
@@ -395,24 +398,24 @@ function Board({ result, setResult }) {
           board[24] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
             setBsliced(true);
+            pattSound.play();
             setPat4(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
             setIsliced(true);
+            pattSound.play();
             setPat4(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
             setNsliced(true);
+            pattSound.play();
             setPat4(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
             setGsliced(true);
+            pattSound.play();
             setPat4(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
             setOsliced(true);
+            pattSound.play();
             setPat4(true);
           } else {
             setPat4(false);
@@ -431,24 +434,24 @@ function Board({ result, setResult }) {
           board[20] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
             setBsliced(true);
+            pattSound.play();
             setPat5(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
             setIsliced(true);
+            pattSound.play();
             setPat5(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
+            pattSound.play();
             setNsliced(true);
             setPat5(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
+            pattSound.play();
             setGsliced(true);
             setPat5(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
             setOsliced(true);
+            pattSound.play();
             setPat5(true);
           } else {
             setPat5(false);
@@ -467,24 +470,24 @@ function Board({ result, setResult }) {
           board[21] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
+            pattSound.play();
             setBsliced(true);
             setPat6(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
+            pattSound.play();
             setIsliced(true);
             setPat6(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
             setNsliced(true);
+            pattSound.play();
             setPat6(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
             setGsliced(true);
+            pattSound.play();
             setPat6(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
             setOsliced(true);
+            pattSound.play();
             setPat6(true);
           } else {
             setPat6(false);
@@ -503,23 +506,23 @@ function Board({ result, setResult }) {
           board[22] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
             setBsliced(true);
+            pattSound.play();
             setPat7(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
+            pattSound.play();
             setIsliced(true);
             setPat7(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
+            pattSound.play();
             setNsliced(true);
             setPat7(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
+            pattSound.play();
             setGsliced(true);
             setPat7(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
+            pattSound.play();
             setOsliced(true);
             setPat7(true);
           } else {
@@ -539,23 +542,23 @@ function Board({ result, setResult }) {
           board[23] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
+            pattSound.play();
             setBsliced(true);
             setPat8(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
+            pattSound.play();
             setIsliced(true);
             setPat8(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
+            pattSound.play();
             setNsliced(true);
             setPat8(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
+            pattSound.play();
             setGsliced(true);
             setPat8(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
+            pattSound.play();
             setOsliced(true);
             setPat8(true);
           } else {
@@ -575,23 +578,22 @@ function Board({ result, setResult }) {
           board[24] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
             setBsliced(true);
             setPat9(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
+            pattSound.play();
             setIsliced(true);
             setPat9(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
             setNsliced(true);
+            pattSound.play();
             setPat9(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
             setGsliced(true);
+            pattSound.play();
             setPat9(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
+            pattSound.play();
             setOsliced(true);
             setPat9(true);
           } else {
@@ -611,23 +613,23 @@ function Board({ result, setResult }) {
           board[24] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
             setBsliced(true);
+            pattSound.play();
             setPat10(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
+            pattSound.play();
             setIsliced(true);
             setPat10(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
+            pattSound.play();
             setNsliced(true);
             setPat10(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
+            pattSound.play();
             setGsliced(true);
             setPat10(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
+            pattSound.play();
             setOsliced(true);
             setPat10(true);
           } else {
@@ -647,23 +649,23 @@ function Board({ result, setResult }) {
           board[20] === "X"
         ) {
           if (bSliced === false) {
-            b.classList.add("slice");
+            pattSound.play();
             setBsliced(true);
             setPat11(true);
           } else if (iSliced === false) {
-            i.classList.add("slice");
+            pattSound.play();
             setIsliced(true);
             setPat11(true);
           } else if (nSliced === false) {
-            n.classList.add("slice");
+            pattSound.play();
             setNsliced(true);
             setPat11(true);
           } else if (gSliced === false) {
-            g.classList.add("slice");
+            pattSound.play();
             setGsliced(true);
             setPat11(true);
           } else if (oSliced === false) {
-            o.classList.add("slice");
+            pattSound.play();
             setOsliced(true);
             setPat11(true);
           } else {
@@ -678,11 +680,11 @@ function Board({ result, setResult }) {
   return (
     <div className="board">
       <h1>
-        <span className="b">B</span>
-        <span className="i">I</span>
-        <span className="n">N</span>
-        <span className="g">G</span>
-        <span className="o">O</span>
+        <span className={`b ${bSliced ? "slice" : ""}`}>B</span>
+        <span className={`i ${iSliced ? "slice" : ""}`}>I</span>
+        <span className={`n ${nSliced ? "slice" : ""}`}>N</span>
+        <span className={`g ${gSliced ? "slice" : ""}`}>G</span>
+        <span className={`o ${oSliced ? "slice" : ""}`}>O</span>
       </h1>
       <table className="bingo-table">
         <tbody>

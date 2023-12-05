@@ -9,6 +9,7 @@ function Game({ channel }) {
 
   useEffect(() => {
     // Play the game music
+    gamemusic.volume = 0.4;
     gamemusic.play();
 
     // Set up an event listener for when the music ends
@@ -36,6 +37,7 @@ function Game({ channel }) {
     console.log(e.user.name);
     setPlayerjoined(e.user.name);
     setPlayersJoined(e.watcher_count === 2);
+    // console.log(e.watcher_count.name);
   });
 
   if (!playersjoined) {
