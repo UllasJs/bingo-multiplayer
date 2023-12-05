@@ -2,7 +2,7 @@ import { useState } from "react";
 // import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import './style/login.css'
+import "./style/login.css";
 
 export function Login({ setIsAuth }) {
   const cookies = new Cookies();
@@ -15,7 +15,7 @@ export function Login({ setIsAuth }) {
     // console.log(username, password);
 
     axios
-      .post("http://192.168.0.174:3001/login", { username, password })
+      .post("http://localhost:3001/login", { username, password })
       .then((res) => {
         const { token, userId, username } = res.data;
 

@@ -22,7 +22,7 @@ export function SignUp({ setIsAuth }) {
     e.preventDefault();
 
     axios
-      .post("http://192.168.0.174:3001/signup", user)
+      .post("http://localhost:3001/signup", user)
       .then((res) => {
         const { token, userId, username, hashedPassword } = res.data;
 
