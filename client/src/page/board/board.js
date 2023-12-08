@@ -62,38 +62,42 @@ function Board({ result, setResult }) {
 
   channel.on((event) => {
     // console.log(event.data.val);
-    const currentPlayer = event.data.player === player;
-    setPlayer(!currentPlayer);
-    let idx2;
-    if (event.type === "game-move" && event.user.id !== client.userID) {
-      for (let i = 0; i < board.length; i++) {
-        if (board[i] === event.data.val && board[i] !== "X") {
-          idx2 = i;
+    try {
+      const currentPlayer = event.data.player === player;
+      setPlayer(!currentPlayer);
+      let idx2;
+      if (event.type === "game-move" && event.user.id !== client.userID) {
+        for (let i = 0; i < board.length; i++) {
+          if (board[i] === event.data.val && board[i] !== "X") {
+            idx2 = i;
+          }
         }
+        // let cell = document.querySelectorAll(".cells");
+
+        // cell.forEach((cel) => {
+        //   cel.classList.add("marked");
+        // });
+
+        // console.log("idx2", idx2);
+        // Update the board value to 0
+        const updatedBoard = [...board];
+        updatedBoard[idx2] = "X";
+
+        // if (loser) {
+        //   alert("Loser")
+        // }
+        // Update the turn
+        // Set the new board state
+        setTurn(!currentPlayer);
+
+        setBoard(updatedBoard);
+        checkPatterns(updatedBoard);
+        // checkwinner();
+        // setPlayer(!player)
+        // checkTextCut(idx2);
       }
-      // let cell = document.querySelectorAll(".cells");
-
-      // cell.forEach((cel) => {
-      //   cel.classList.add("marked");
-      // });
-
-      // console.log("idx2", idx2);
-      // Update the board value to 0
-      const updatedBoard = [...board];
-      updatedBoard[idx2] = "X";
-
-      // if (loser) {
-      //   alert("Loser")
-      // }
-      // Update the turn
-      // Set the new board state
-      setTurn(!currentPlayer);
-
-      setBoard(updatedBoard);
-      checkPatterns(updatedBoard);
-      // checkwinner();
-      // setPlayer(!player)
-      // checkTextCut(idx2);
+    } catch (error) {
+      console.log(error);
     }
   });
 
@@ -159,7 +163,6 @@ function Board({ result, setResult }) {
     false,
     false,
   ];
-
 
   function checkwinner() {
     if (pat0) {

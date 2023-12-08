@@ -7,11 +7,21 @@ function JoinGame() {
   const [rivalname, setRivalName] = useState("");
   const { client } = useChatContext();
   const [channel, setChannel] = useState(null);
+  const [player1, setPlayer1] = useState("");
+  const [player2, setPlayer2] = useState("");
+
   const createChannel = async (e) => {
     e.preventDefault();
     const response = await client.queryUsers({ name: { $eq: rivalname } });
 
-    console.log(response);
+    // console.log(client.user.name);
+
+    try {
+      setPlayer2(response.users[0].name);
+      setPlayer1(client.user.name);
+    } catch (error) {
+      // console.log(error);
+    }
 
     if (response.users.length === 0) {
       alert("Rival Not found");
@@ -30,7 +40,12 @@ function JoinGame() {
     <>
       {channel ? (
         <Channel channel={channel}>
-          <Game channel={channel} />
+          <Game
+            channel={channel}
+            setChannel={setChannel}
+            player1={player1}
+            player2={player2}
+          />
         </Channel>
       ) : (
         <div className="joingame">
@@ -42,7 +57,9 @@ function JoinGame() {
               setRivalName(event.target.value);
             }}
           />
-          <button className="joinbtn" onClick={createChannel}>Join/Start Game</button>
+          <button className="joinbtn" onClick={createChannel}>
+            Join/Start Game
+          </button>
         </div>
       )}
     </>

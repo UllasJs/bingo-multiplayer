@@ -4,8 +4,10 @@ import gameMusic from "../assets/soundeffects/gameMusic.mp3";
 
 const gamemusic = new Audio(gameMusic);
 
-function Game({ channel }) {
-  const [playerJoined, setPlayerjoined] = useState(null);
+function Game({ channel, setChannel, player1, player2 }) {
+
+  // console.log("p1",player1);
+  // console.log("p2",player2);
 
   useEffect(() => {
     // Play the game music
@@ -34,8 +36,7 @@ function Game({ channel }) {
   const [result, setResult] = useState({ winner: "none", state: "none" });
 
   channel.on("user.watching.start", (e) => {
-    console.log(e.user.name);
-    setPlayerjoined(e.user.name);
+    // console.log(e.user.name);
     setPlayersJoined(e.watcher_count === 2);
     // console.log(e.watcher_count.name);
   });
@@ -61,7 +62,7 @@ function Game({ channel }) {
         }}
         className="gameContainer"
       >
-        {playerJoined && (
+        {player2 && (
           <p
             style={{
               fontSize: 20,
@@ -74,14 +75,20 @@ function Game({ channel }) {
                 color: "#0092ff",
               }}
             >
-              {playerJoined + " "}
+              {player2 + " "}
             </span>
             has joined the game
           </p>
         )}
         <Board result={result} setResult={setResult} />
-        {/* Chat */}
-        {/* leave game btn */}
+        <button
+          onClick={async () => {
+            await channel.stopWatching();
+            setChannel(null);
+          }}
+        >
+          Leave Game
+        </button>
       </div>
     );
   }
