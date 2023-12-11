@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import Square from "./square"; // Import the Square component
 import "./board.css"; // Import your board styles if needed
@@ -7,35 +8,23 @@ import ClickSound from "../../assets/soundeffects/game-click.wav";
 import WinnerSound from "../../assets/soundeffects/game-over.wav";
 import PatternSound from "../../assets/soundeffects/game-pattern.wav";
 
-function Board({ result, setResult }) {
+function Board({ player1, player2 }) {
   const pattSound = new Audio(PatternSound);
   const [board, setBoard] = useState([]);
   const [player, setPlayer] = useState(false);
   const [turn, setTurn] = useState(false);
   const { channel } = useChannelStateContext();
   const { client } = useChatContext();
-  // const [loser, setLoser] = useState(false)
 
   let idx;
   const chooseSquare = async (val) => {
-    // console.log("square clicked", val);
-
     const clickaudio = new Audio(ClickSound);
-
     clickaudio.play();
-
     for (let i = 0; i < board.length; i++) {
       if (board[i] === val && board[i] !== "X") {
         idx = i;
       }
     }
-
-    // let cell = document.querySelectorAll(".cells");
-
-    // cell.forEach((cel) => {
-    //   cel.classList.add("marked");
-    // });
-
     if (turn === player && board[idx] !== 0) {
       setTurn(player === false ? true : false);
       // Update the board value to 0
@@ -53,10 +42,6 @@ function Board({ result, setResult }) {
 
       setBoard(updatedBoard);
       checkPatterns(updatedBoard);
-      // checkwinner();
-      // if (winner) {
-      //   winnerText = "Winner!"
-      // }
     }
   };
 
@@ -72,32 +57,18 @@ function Board({ result, setResult }) {
             idx2 = i;
           }
         }
-        // let cell = document.querySelectorAll(".cells");
 
-        // cell.forEach((cel) => {
-        //   cel.classList.add("marked");
-        // });
-
-        // console.log("idx2", idx2);
-        // Update the board value to 0
         const updatedBoard = [...board];
         updatedBoard[idx2] = "X";
 
-        // if (loser) {
-        //   alert("Loser")
-        // }
-        // Update the turn
-        // Set the new board state
         setTurn(!currentPlayer);
 
         setBoard(updatedBoard);
         checkPatterns(updatedBoard);
-        // checkwinner();
-        // setPlayer(!player)
-        // checkTextCut(idx2);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      window.location.reload(1);
     }
   });
 
@@ -164,53 +135,55 @@ function Board({ result, setResult }) {
     false,
   ];
 
+  checkwinner();
+
   function checkwinner() {
     if (pat0) {
-      console.log("Pattern 0");
+      // console.log("Pattern 0");
       matchedPatterns[0] = pat0;
     }
     if (pat1) {
-      console.log("Pattern 1");
+      // console.log("Pattern 1");
       matchedPatterns[1] = pat1;
     }
     if (pat2) {
-      console.log("Pattern 2");
+      // console.log("Pattern 2");
       matchedPatterns[2] = pat2;
     }
     if (pat3) {
-      console.log("Pattern 3");
+      // console.log("Pattern 3");
       matchedPatterns[3] = pat3;
     }
     if (pat4) {
-      console.log("Pattern 4");
+      // console.log("Pattern 4");
       matchedPatterns[4] = pat4;
     }
     if (pat5) {
-      console.log("Pattern 5");
+      // console.log("Pattern 5");
       matchedPatterns[5] = pat5;
     }
     if (pat6) {
-      console.log("Pattern 6");
+      // console.log("Pattern 6");
       matchedPatterns[6] = pat6;
     }
     if (pat7) {
-      console.log("Pattern 7");
+      // console.log("Pattern 7");
       matchedPatterns[7] = pat7;
     }
     if (pat8) {
-      console.log("Pattern 8");
+      // console.log("Pattern 8");
       matchedPatterns[8] = pat8;
     }
     if (pat9) {
-      console.log("Pattern 9");
+      // console.log("Pattern 9");
       matchedPatterns[9] = pat9;
     }
     if (pat10) {
-      console.log("Pattern 10");
+      // console.log("Pattern 10");
       matchedPatterns[10] = pat10;
     }
     if (pat11) {
-      console.log("Pattern 11");
+      // console.log("Pattern 11");
       matchedPatterns[11] = pat11;
     }
 
@@ -220,13 +193,13 @@ function Board({ result, setResult }) {
       if (matchedPatterns[i] === true) {
         consecutiveTrueCount++;
         if (consecutiveTrueCount === 5) {
-          console.log("Found 5 true values!");
+          // console.log("Found 5 true values!");
           // setLoser(true)
           const gameOver = new Audio(WinnerSound);
           gameOver.play();
-          if (oSliced) {
-            alert("You Won");
-          }
+
+          alert("Winner");
+
           // setWinner(true)
           // You can perform additional actions here
           // Break out of the loop once you find the sequence
@@ -235,9 +208,9 @@ function Board({ result, setResult }) {
     }
   }
 
-  useEffect(() => {
-    checkwinner();
-  }, [board]);
+  // useEffect(() => {
+  //   checkwinner();
+  // }, [board]);
 
   const checkPatterns = (board) => {
     if (pat0 === false) {
